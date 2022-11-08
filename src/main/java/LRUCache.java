@@ -49,7 +49,10 @@ public class LRUCache<K, V> {
     public V get(K key) {
         assert(key != null);
         if (contains(key)) {
-            return hashes.get(key).getValue();
+            V value = hashes.get(key).getValue();
+            remove(key);
+            add(key, value);
+            return value;
         }
         return null;
     }
