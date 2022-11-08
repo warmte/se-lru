@@ -3,7 +3,8 @@ public class BufferList<K, V> {
     private Node tail = null;
     private int size = 0;
 
-    BufferList() {}
+    BufferList() {
+    }
 
     Node add(K key, V value) {
         size++;
@@ -52,7 +53,7 @@ public class BufferList<K, V> {
         }
 
         void addNext(Node next) {
-            assert(this.next == null);
+            assert (this.next == null);
             next.prev = this;
             this.next = next;
         }
@@ -60,9 +61,14 @@ public class BufferList<K, V> {
         void remove() {
             if (this.prev != null) {
                 this.prev.next = this.next;
+            } else if (this == head) {
+                head = this.next;
             }
+
             if (this.next != null) {
                 this.next.prev = this.prev;
+            } else if (this == tail) {
+                tail = this.prev;
             }
         }
 

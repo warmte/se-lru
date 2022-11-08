@@ -30,6 +30,21 @@ public class LRUCacheTest {
     }
 
     @Test
+    public void getTest() {
+        LRUCache<String, Long> lru = new LRUCache<>(2);
+        lru.add("1", 1L);
+        lru.add("2", 2L);
+        lru.add("3", 3L);
+        lru.get("2");
+        lru.add("4", 4L);
+        assertEquals(lru.size(), 2);
+        assertNull(lru.get("1"));
+        assertNull(lru.get("3"));
+        assertEquals(lru.get("2"), 2L);
+        assertEquals(lru.get("4"), 4L);
+    }
+
+    @Test
     public void limitTest() {
         LRUCache<String, Long> lru = new LRUCache<>(2);
         lru.add("1", 1L);
