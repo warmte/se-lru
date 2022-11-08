@@ -71,11 +71,11 @@ public class LRUCacheTest {
         assertEquals(lru.get("1"), 4L);
         lru.add("4", 4L);
         assertEquals(lru.size(), 3);
-        assertNull(lru.get("1"));
-        assertEquals(lru.get("4"), 4L);
-        lru.remove("2");
-        assertEquals(lru.size(), 2);
         assertNull(lru.get("2"));
+        assertEquals(lru.get("4"), 4L);
+        lru.remove("1");
+        assertEquals(lru.size(), 2);
+        assertNull(lru.get("1"));
         lru.add("5", 5L);
         assertEquals(lru.size(), 3);
         assertEquals(lru.get("3"), 3L);
